@@ -8,23 +8,15 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  hero: Hero = {
-    id: 1,
-    name: 'windstrom'
-  };
-  heros: Hero[];
-  SelectedHero: Hero;
+
+  heroes: Hero[];
+
   constructor(private heroService: HeroService) { }
 
   ngOnInit() {
     this.getHeroes();
   }
-
-  onselect ( hero: Hero): void {
-    this.SelectedHero = hero;
-  }
-
   getHeroes(): void {
-     this.heroService.getHeros().subscribe(heros => this.heros = heros);
+     this.heroService.getHeros('HeroComponent').subscribe(heros => this.heroes = heros);
   }
 }
